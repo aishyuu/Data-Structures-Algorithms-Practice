@@ -18,17 +18,59 @@ Since we're not checking everything on every division, the time complexity of bi
 
 /*
 Pseudo Code:
-Check if the length is 1:
-    If length of array is 1 and value is not what we're looking for, return null
-    Else, return 1
+index = 0
+posChange = True
 
-We divide length by 2 and round down.
-    If the value of middle index is the value we're looking for, return the index
-
-If not:
-    If the value of what we're looking for larger than the value in the center
-        Run the function again from center to end of array.
-    Else
-        Run the function again from index 0 to the center of array.
+In while Loop:
+We're given an array and the number we want to find
+Divide length of array by 2 and round down (index_check)
+If posChange is true
+    index += index_check
+else
+    index -= index_check
+if arr[index_check] == 9
+    return index
+if 9 < arr[index_check]
+    arr = arr[0:index_check]
+else
+    arr = arr[index_check:arr.length]
 */
+/**
+ * Binary Search
+ * @constructor
+ * @param {Int32Array} arr - Array of numbers
+ * @param {Number} low - The starting index of the split array
+ * @param {Number} high - The last index of the split array
+ * @param {Number} val - Value we're trying to find
+ */
+function binary_search(arr, low, high, val) {
+  while (true) {
+    if (low == high) {
+      if (arr[low] == val) {
+        return low;
+      }
+      return null;
+    }
 
+    const mid = Math.floor(high - (high - low) / 2);
+
+    if (arr[mid] == val) {
+      return mid;
+    }
+
+    if (arr[mid] < val) {
+      low = mid + 1;
+    } else {
+      high = mid - 1;
+    }
+  }
+}
+
+const arr = [2, 9, 13, 20, 21, 27, 31, 35, 40];
+const test = binary_search(arr, 0, arr.length - 1, 27);
+console.log(test);
+if (test == null) {
+  console.log("Not found");
+} else {
+  console.log(arr[test]);
+}

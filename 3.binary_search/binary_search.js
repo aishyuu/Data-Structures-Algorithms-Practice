@@ -66,11 +66,43 @@ function binary_search(arr, low, high, val) {
   }
 }
 
-const arr = [2, 9, 13, 20, 21, 27, 31, 35, 40];
-const test = binary_search(arr, 0, arr.length - 1, 27);
+const arr = [2, 5, 8, 12, 16, 23, 38, 56, 72, 91];
+const test = binary_search(arr, 0, arr.length - 1, 2);
 console.log(test);
 if (test == null) {
   console.log("Not found");
 } else {
   console.log(arr[test]);
 }
+
+
+// Course Version
+/**
+ * Binary Search Course Version
+ * @constructor
+ * @param {int32Array} haystack - Array of numbers
+ * @param {Number} needle - Number you're trying to find
+ */
+function binary_search_ver2(haystack, needle) {
+  let lo = 0
+  let hi = haystack.length;
+
+  do {
+    const m = Math.floor(lo + (hi - lo) / 2);
+    const v = haystack[m];
+
+    if(v === needle) {
+      return true;
+    } else if(v > needle) {
+      hi = m;
+    } else {
+      lo = m + 1;
+    }
+  } while(lo < hi);
+
+  return false;
+}
+
+const test2 = binary_search_ver2(arr, 5);
+console.log(test2)
+console.log(arr[test2])

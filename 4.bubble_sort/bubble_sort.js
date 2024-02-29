@@ -23,15 +23,34 @@ function bubble_sort(arr) {
   let from_final = 1;
   for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < arr.length - from_final; j++) {
-        if(arr[j] > arr[j+1]){
-            let c = arr[j]
-            arr[j] = arr[j+1]
-            arr[j+1] = c
-        }
+      if (arr[j] > arr[j + 1]) {
+        let c = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = c;
+      }
     }
-    from_final += 1
+    from_final += 1;
   }
-  return(arr)
+  return arr;
 }
 
-console.log(bubble_sort([1,3,7,4,2]))
+console.log(bubble_sort([1, 3, 7, 4, 2]));
+
+// Implementation from the course
+// I essentially got the idea correct but there were some variables that are unecessary
+/**
+ * @constructor
+ * @param {Int32Array} arr - Unsorted array
+ */
+function bubble2(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length - 1 - i; j++) {
+      if (arr[j] > arr[j + 1]) {
+        let c = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = c;
+      }
+    }
+  }
+  return arr;
+}

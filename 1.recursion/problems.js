@@ -58,28 +58,58 @@ console.log(
 
 //Search JS Object
 function searchObject(obj, val) {
-    for(const key in obj) {
-       if(typeof obj[key] === 'object') {
-        return searchObject(obj[key], val)
-       }
-       if(obj[key] == val) {
-        return true
-       }
+  for (const key in obj) {
+    if (typeof obj[key] === "object") {
+      return searchObject(obj[key], val);
     }
+    if (obj[key] == val) {
+      return true;
+    }
+  }
 }
 var nestedObject = {
-    data: {
-        info: {
-            stuff: {
-                thing: {
-                    moreStuff: {
-                        magicNumber: 44,
-                        something: 'foo2'
-                    }
-                }
-            }
-        }
-    }
-}
+  data: {
+    info: {
+      stuff: {
+        thing: {
+          moreStuff: {
+            magicNumber: 44,
+            something: "foo2",
+          },
+        },
+      },
+    },
+  },
+};
 
 console.log(searchObject(nestedObject, 44));
+
+// Parse a multi-dimensional array
+function totalIntegers(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    if (Array.isArray(arr[i])) {
+      totalIntegers(arr[i]);
+    } else {
+      console.log(arr[i]);
+    }
+  }
+}
+console.log("HERE START AHHHHHHH");
+totalIntegers([[[5], 3], 0, 2, ["foo"], [], [4, [5, 6]]]);
+
+// Sum Squares
+// Sums squares of numbers in list that contains more list.
+function sumSquares(arr) {
+  let value = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (Array.isArray(arr[i])) {
+      value += sumSquares(arr[i]);
+    } else {
+        value += arr[i] * arr[i]
+    }
+  } return value
+}
+
+console.log(sumSquares([10,[[10],10],[10]]))
+console.log(sumSquares([[[[[[[[[1]]]]]]]]] ))
+console.log(sumSquares([[1,2],3]))

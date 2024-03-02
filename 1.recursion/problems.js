@@ -41,16 +41,45 @@ console.log(productOfArray([1, 2, 3, 10]));
 
 // Check all values in an array
 function checkAllVals(arr, check) {
-  if (arr.length == 1) {
+  if (arr.length === 1) {
     return check(arr[0]);
   }
   if (check(arr.pop())) {
     return checkAllVals(arr, check);
   }
+  return false;
 }
 
 console.log(
-  checkAllVals([1, 2, 9], function (num) {
+  checkAllVals([1, 2, 5, 9], function (num) {
     return num < 7;
   })
 );
+
+//Search JS Object
+function searchObject(obj, val) {
+    for(const key in obj) {
+       if(typeof obj[key] === 'object') {
+        return searchObject(obj[key], val)
+       }
+       if(obj[key] == val) {
+        return true
+       }
+    }
+}
+var nestedObject = {
+    data: {
+        info: {
+            stuff: {
+                thing: {
+                    moreStuff: {
+                        magicNumber: 44,
+                        something: 'foo2'
+                    }
+                }
+            }
+        }
+    }
+}
+
+console.log(searchObject(nestedObject, 44));

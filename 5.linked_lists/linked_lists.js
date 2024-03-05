@@ -62,11 +62,37 @@ class LinkedList {
     resultString += "(null)"
     return resultString;
   }
+
+  pop() {
+    // Since we don't know what's behind us, we would need to go from the head to before the tail.
+    if(this.size == 0) {
+        console.log("Nothing to be popped");
+        return;
+    }
+    if(this.size == 1) {
+        this.head = null;
+        this.tail = null;
+        this.size -= 1;
+        return;
+    }
+    let currentNode = this.head;
+    while(true) {
+        if(currentNode.next == this.tail) {
+            this.tail = currentNode;
+            this.tail.next = null;
+            return;
+        }
+        currentNode = currentNode.next;
+    }
+  }
 }
 
 const list = new LinkedList();
 list.append(5);
 list.prepend(6);
 list.append(1);
+
+console.log(list.toString());
+list.pop();
 
 console.log(list.toString());

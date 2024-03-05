@@ -100,10 +100,23 @@ class LinkedList {
       return this.tail;
     }
     let currentNode = this.head;
-    for(let i = 0; i < index; i++) {
-        currentNode = currentNode.next;
+    for (let i = 0; i < index; i++) {
+      currentNode = currentNode.next;
     }
     return currentNode;
+  }
+
+  contains(val) {
+    let currentNode = this.head;
+    while (true) {
+      if (currentNode.value == val) {
+        return true;
+      }
+      if (currentNode.next == null) {
+        return false;
+      }
+      currentNode = currentNode.next;
+    }
   }
 }
 
@@ -117,3 +130,4 @@ list.append(9);
 
 console.log(list.toString());
 console.log(list.at(3));
+console.log(list.contains(12));

@@ -56,34 +56,54 @@ class LinkedList {
       currentNode = currentNode.next;
     }
     let resultString = "";
-    for(let i = 0; i < allValues.length; i++) {
-        resultString += `(${allValues[i]}) -> `
+    for (let i = 0; i < allValues.length; i++) {
+      resultString += `(${allValues[i]}) -> `;
     }
-    resultString += "(null)"
+    resultString += "(null)";
     return resultString;
   }
 
   pop() {
     // Since we don't know what's behind us, we would need to go from the head to before the tail.
-    if(this.size == 0) {
-        console.log("Nothing to be popped");
-        return;
+    if (this.size == 0) {
+      console.log("Nothing to be popped");
+      return;
     }
-    if(this.size == 1) {
-        this.head = null;
-        this.tail = null;
-        this.size -= 1;
-        return;
+    if (this.size == 1) {
+      this.head = null;
+      this.tail = null;
+      this.size -= 1;
+      return;
     }
     let currentNode = this.head;
-    while(true) {
-        if(currentNode.next == this.tail) {
-            this.tail = currentNode;
-            this.tail.next = null;
-            return;
-        }
+    while (true) {
+      if (currentNode.next == this.tail) {
+        this.tail = currentNode;
+        this.tail.next = null;
+        return;
+      }
+      currentNode = currentNode.next;
+    }
+  }
+
+  at(index) {
+    if (index > this.size - 1) {
+      return "The index you're trying to access exceeds current list size";
+    }
+    if (this.size == 0) {
+      return "There is nothing in this list";
+    }
+    if (index == 0) {
+      return this.head;
+    }
+    if (index == this.size - 1) {
+      return this.tail;
+    }
+    let currentNode = this.head;
+    for(let i = 0; i < index; i++) {
         currentNode = currentNode.next;
     }
+    return currentNode;
   }
 }
 
@@ -91,8 +111,9 @@ const list = new LinkedList();
 list.append(5);
 list.prepend(6);
 list.append(1);
+list.append(7);
+list.append(12);
+list.append(9);
 
 console.log(list.toString());
-list.pop();
-
-console.log(list.toString());
+console.log(list.at(3));

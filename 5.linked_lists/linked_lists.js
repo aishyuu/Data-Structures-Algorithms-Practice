@@ -118,6 +118,26 @@ class LinkedList {
       currentNode = currentNode.next;
     }
   }
+
+  find(val) {
+    if (this.size == 0) {
+      return "Nothing in here";
+    }
+
+    let currentNode = this.head;
+    let currentIndex = 0;
+
+    while (true) {
+      if (currentNode == null) {
+        return null;
+      }
+      if (currentNode.value == val) {
+        return currentIndex;
+      }
+      currentNode = currentNode.next;
+      currentIndex += 1;
+    }
+  }
 }
 
 const list = new LinkedList();
@@ -131,3 +151,5 @@ list.append(9);
 console.log(list.toString());
 console.log(list.at(3));
 console.log(list.contains(12));
+console.log(list.find(7));
+console.log(list.find(10));

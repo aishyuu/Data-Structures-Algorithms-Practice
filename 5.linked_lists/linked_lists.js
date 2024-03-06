@@ -138,6 +138,18 @@ class LinkedList {
       currentIndex += 1;
     }
   }
+
+  insertAt(val, index) {
+    let currentNode = this.head;
+    for(let i = 0; i < index-1; i++){
+        currentNode = currentNode.next;
+    }
+    let newNode = new Node;
+    newNode.value = val;
+    newNode.next = currentNode.next;
+    currentNode.next = newNode;
+    return;
+  }
 }
 
 const list = new LinkedList();
@@ -153,3 +165,5 @@ console.log(list.at(3));
 console.log(list.contains(12));
 console.log(list.find(7));
 console.log(list.find(10));
+console.log(list.insertAt(10, 2));
+console.log(list.toString());

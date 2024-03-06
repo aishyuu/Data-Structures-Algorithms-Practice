@@ -141,14 +141,30 @@ class LinkedList {
 
   insertAt(val, index) {
     let currentNode = this.head;
-    for(let i = 0; i < index-1; i++){
-        currentNode = currentNode.next;
+    for (let i = 0; i < index - 1; i++) {
+      currentNode = currentNode.next;
     }
-    let newNode = new Node;
+    let newNode = new Node();
     newNode.value = val;
     newNode.next = currentNode.next;
     currentNode.next = newNode;
     return;
+  }
+
+  removeAt(index) {
+    if (this.size <= 2) {
+      console.log(
+        "Suggestion: Use pop() instead.\nReason: too small of a list to do this process."
+      );
+    }
+    let prevNode = this.head;
+    let toRemove = this.head.next;
+    for (let i = 0; i < index - 1; i++) {
+      prevNode = prevNode.next;
+      toRemove = toRemove.next;
+    }
+    prevNode.next = toRemove.next;
+    toRemove.next = null;
   }
 }
 
@@ -166,4 +182,6 @@ console.log(list.contains(12));
 console.log(list.find(7));
 console.log(list.find(10));
 console.log(list.insertAt(10, 2));
+console.log(list.toString());
+list.removeAt(4);
 console.log(list.toString());

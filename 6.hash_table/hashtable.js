@@ -35,6 +35,29 @@ class HashMap {
     }
     return null;
   }
+
+  has(key) {
+    const hashCode = this.hash(key);
+    if (this.data[hashCode] == null) {
+      return false;
+    }
+    if (this.data[hashCode].key == key) {
+      return true;
+    }
+    return false;
+  }
+
+  remove(key) {
+    const hashCode = this.hash(key);
+    if (this.data[hashCode] == null) {
+      return false;
+    }
+    if (this.data[hashCode].key == key) {
+      this.data[hashCode] = null;
+      return true;
+    }
+    return false;
+  }
 }
 
 const test = new HashMap();
@@ -45,3 +68,6 @@ test.set("Hello There", 2555);
 console.log(test.data);
 console.log(test.get("Hello There"));
 console.log(test.get("Welp"));
+console.log(test.has("Hello There"));
+test.remove("Hello There");
+console.log(test.data);

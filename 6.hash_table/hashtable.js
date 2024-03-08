@@ -70,7 +70,7 @@ class HashMap {
   }
 
   clear() {
-    for (i = 0; i < this.data.length; i++) {
+    for (let i = 0; i < this.data.length; i++) {
       this.data[i] = null;
     }
   }
@@ -87,6 +87,14 @@ class HashMap {
     let result = [];
     for (let i = 0; i < this.data.length; i++) {
       result.push(this.data[i].value);
+    }
+    return result;
+  }
+
+  entries() {
+    let result = [];
+    for (let i = 0; i < this.data.length; i++) {
+        result.push([this.data[i].key, this.data[i].value])
     }
     return result;
   }

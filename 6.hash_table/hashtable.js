@@ -70,9 +70,25 @@ class HashMap {
   }
 
   clear() {
-    for(i = 0; i < this.data.length; i++) {
-        this.data[i] = null;
+    for (i = 0; i < this.data.length; i++) {
+      this.data[i] = null;
     }
+  }
+
+  keys() {
+    let result = [];
+    for (let i = 0; i < this.data.length; i++) {
+      result.push(this.data[i].key);
+    }
+    return result;
+  }
+
+  values() {
+    let result = [];
+    for (let i = 0; i < this.data.length; i++) {
+      result.push(this.data[i].value);
+    }
+    return result;
   }
 }
 

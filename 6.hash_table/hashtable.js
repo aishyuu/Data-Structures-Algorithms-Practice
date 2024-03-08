@@ -3,6 +3,7 @@ class HashMap {
   constructor() {
     this.data = new Array(16);
   }
+
   hash(key) {
     let hashCode = 0;
 
@@ -13,4 +14,34 @@ class HashMap {
     }
     return hashCode;
   }
+
+  set(key, value) {
+    const hashCode = this.hash(key);
+    if (this.data[hashCode] != null) {
+      console.log(
+        `Overwriting data: {${this.data[hashCode].key}, ${this.data[hashCode].value}}`
+      );
+    }
+    this.data[hashCode] = { key: key, value: value };
+  }
+
+  get(key) {
+    const hashCode = this.hash(key);
+    if (this.data[hashCode] == null) {
+      return null;
+    }
+    if (this.data[hashCode].key == key) {
+      return this.data[hashCode].value;
+    }
+    return null;
+  }
 }
+
+const test = new HashMap();
+console.log(test.hash("Hello There"));
+test.set("Hello There", 2314);
+console.log(test.data);
+test.set("Hello There", 2555);
+console.log(test.data);
+console.log(test.get("Hello There"));
+console.log(test.get("Welp"));

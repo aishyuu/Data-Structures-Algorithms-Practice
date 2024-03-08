@@ -58,6 +58,22 @@ class HashMap {
     }
     return false;
   }
+
+  length() {
+    let result = 0;
+    for (let i = 0; i < this.data.length; i++) {
+      if (this.data[i] != null) {
+        result += 1;
+      }
+    }
+    return result;
+  }
+
+  clear() {
+    for(i = 0; i < this.data.length; i++) {
+        this.data[i] = null;
+    }
+  }
 }
 
 const test = new HashMap();
@@ -66,8 +82,4 @@ test.set("Hello There", 2314);
 console.log(test.data);
 test.set("Hello There", 2555);
 console.log(test.data);
-console.log(test.get("Hello There"));
-console.log(test.get("Welp"));
-console.log(test.has("Hello There"));
-test.remove("Hello There");
-console.log(test.data);
+console.group(test.length());

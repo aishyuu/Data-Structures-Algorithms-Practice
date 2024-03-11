@@ -34,6 +34,33 @@ class BinarySearchTree {
       currentNode = this.root;
     }
   }
+
+  insert(value) {
+    let currentNode = this.root;
+    if (this.root == null) {
+      this.root = new Node(value);
+      return;
+    }
+
+    while (true) {
+      if (value >= currentNode.value) {
+        if (currentNode.right == null) {
+          currentNode.right = new Node(value);
+          break;
+        }
+        currentNode = currentNode.right;
+        continue;
+      }
+      if (value < currentNode.value) {
+        if (currentNode.left == null) {
+          currentNode.left = new Node(value);
+          break;
+        }
+        currentNode = currentNode.left;
+        continue;
+      }
+    }
+  }
 }
 
 let test = new BinarySearchTree();
@@ -51,5 +78,5 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
     prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
   }
 };
-
+test.insert(17);
 prettyPrint(test.root);

@@ -223,6 +223,22 @@ class BinarySearchTree {
     }
     return this.depth(node, root.right, level + 1);
   }
+
+  isBalanced(node = this.root) {
+    if (node == null) {
+        return true;
+    }
+    const heightDiff = Math.abs(this.height(node.left) - this.height(node.right));
+    return(heightDiff <= 1 && this.isBalanced(node.left) && this.isBalanced(node.right));
+  }
+
+  rebalance() {
+    if(this.root == null) {
+        return;
+    }
+    const sorted = [...new Set(this.inOrder().sort((a, b) => a-b))]
+    this.root = this.buildTree(sorted);
+  }
 }
 
 let test = new BinarySearchTree();
